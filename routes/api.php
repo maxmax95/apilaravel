@@ -23,3 +23,11 @@ Route::get('/test', function(){
     return $response;
     
 });
+
+//Products Route
+Route::namespace('Api')->prefix('products')->group(function(){
+
+    Route::get('/products','ProductController@index');
+    Route::post('/','ProductController@save');
+
+});
