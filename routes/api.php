@@ -25,9 +25,17 @@ Route::get('/test', function(){
 });
 
 //Products Route
-Route::namespace('Api')->prefix('products')->group(function(){
+Route::namespace('Api')->group(function(){
 
-    Route::get('/products','ProductController@index');
-    Route::post('/','ProductController@save');
+    Route::resource('/user', UserController::class);
 
+    //Products
+    Route::prefix('products')->group(function(){
+        Route::get('/','ProductController@index');
+        Route::post('/','ProductController@save')->middleware('auth.basic');
+        Route::get('/{id}','ProductController@show');
+        Route::put('/','ProductController@update');
+        Route::patch('/','ProductController@update');
+        Route::delete('/{id}','ProductController@delete');
+    });
 });
