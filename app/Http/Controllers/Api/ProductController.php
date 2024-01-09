@@ -30,8 +30,8 @@ class ProductController extends Controller
             
 
             foreach($conditions as $condition){
-                $ci = explode('=',$condition);
-                $products = $products->where($ci[0],$ci[1]);
+                $ci = explode(':',$condition);
+                $products = $products->where($ci[0],$ci[1], $ci[2]);
             }
         }
 
